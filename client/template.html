@@ -1,0 +1,48 @@
+<head>
+  <title>EVSDTesting</title>
+</head>
+
+<body>
+  <h1></h1>
+  {{>loginButtons}}
+</body>
+<template name = "memberprofile">
+<!-- BELOW FOR MEMBERS-->
+{{#if currentUser.member}}
+<h1>Member Profile </h1>
+<ul>
+	{{#each user}}
+	<li> Name: {{profile.firstname}} {{profile.lastname}}</li>
+	<li> Parent Email:{{profile.parentemail}} </li>
+	<li> Email: {{emails.[0].address}}</li>
+	{{/each}}
+
+
+</ul>
+{{#if currentUser.notuploaded}}
+<h2> Upload a File </h2>
+<input type = "file" id = "file-upload"/>
+{{/if}}
+	{{#each user}}
+		<h2> {{pdfname}}</h2>
+		<img class = "uploadedpics" src="{{base64}}"/>
+	{{/each}}
+{{/if}}
+<!-- BELOW FOR ADMIN -->
+{{#if currentUser.admin}}
+	{{#each allusers}}
+	<ul>
+	<h1>Member Profile </h1>
+	<li> Name: {{profile.username}} {{profile.lastname}}</li>
+	<li> Email: {{emails.[0].address}}</li>
+	<li> Parent Email:{{profile.parentemail}} </li>
+	<h2> {{pdfname}}</h2>
+	<img class = "{{classname}}" src="{{base64}}"/>
+	</ul>
+	<input type = "button" name = "removesuser" id = {{_id}} value = "Remove User"/>
+	{{/each}}
+{{/if}}
+</template>
+<template name = "register">
+    <h2>Register</h2>
+</template>
